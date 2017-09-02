@@ -46,33 +46,54 @@ function renderBoard(board, matrix) {
       addCellToRow(rowElement, className, item)
     })
   })
+  addEventListener()
 }
-
 renderBoard(board, matrix)
-
 
 
 //-- Main code: Setter
 
 function setPlayer(){
-
+  console.log(player)
+  player === "x"? player = "o": player = "x";
 }
 
-function setMatrix(matrix, position, player){
-
+function setMatrix(positions){
+  console.log(positions)
+  matrix[positions[0]][positions[1]] = player
+  console.log(matrix)
 }
 
-//Test your solution
-// setMatrix([0,1],'O')
+function renderPlayer(clickedPositions, className){
+  var cell = document.getElementsByClassName(className);
+  if(cell[0].innerHTML.length === 0){
+    cell[0].innerHTML = player;
+    setMatrix(clickedPositions)
+  } else{
+    setPlayer()
+  }
+}
 
 //-- Main code: Event-listener
 
 //Hint: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
-function getPositionFromClass(nodeClass){}
+function getPositionFromClass(nodeClass){
+  var actPosArr = [];
+  var arr = nodeClass.split("-");
+  var rowPosition = parseInt(arr[1]);
+  var columnPosition = parseInt(arr[2]);
+  actPosArr.push(rowPosition);
+  actPosArr.push(columnPosition);
+  console.log(actPosArr)
+  renderPlayer(actPosArr, nodeClass);
+}
 
 function addEventListener(){
-
+  board.addEventListener('click',function(event){
+    getPositionFromClass(event.target.className)
+    setPlayer()
+  })
 }
 
 //-- Main code: checker
