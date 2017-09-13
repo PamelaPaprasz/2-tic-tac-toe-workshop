@@ -1,5 +1,8 @@
 'use strict';
+
 const board = document.querySelector(".board");
+
+let gameInfo = document.querySelector(".winner");
 
 let matrix = [
   ['', '', ''],
@@ -11,6 +14,7 @@ let player = 'x'
 let id = 1
 let cellsPlayerX = [];
 let cellsPlayerO = [];
+let countFilledCells = [];
 
 //Practice: Add, one cell to the board and set an X in it.
 //Hint: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
@@ -91,6 +95,7 @@ function addEventListener(){
   board.addEventListener('click',function(event){
     getPositionFromClass(event.target.className)
     getOccupiedCells(event.target.id)
+    checkLoosers(event.target.id)
   })
 }
 
@@ -106,45 +111,50 @@ function getOccupiedCells(clickedId){
 
 function oPlayerWon(){
   if(cellsPlayerO.includes("1") && cellsPlayerO.includes("2") && cellsPlayerO.includes("3")){
-    console.log("O won with first row")
+    gameInfo.innerHTML = "O won with first row";
   }else if(cellsPlayerO.includes("4") && cellsPlayerO.includes("5") && cellsPlayerO.includes("6")){
-    console.log("O won with second row")
+    gameInfo.innerHTML = "O won with second row";
   }else if(cellsPlayerO.includes("7") && cellsPlayerO.includes("8") && cellsPlayerO.includes("9")){
-    console.log("O won with third row")
+    gameInfo.innerHTML = "O won with third row";
   }else if(cellsPlayerO.includes("1") && cellsPlayerO.includes("4") && cellsPlayerO.includes("7")){
-    console.log("O won with first column")
+    gameInfo.innerHTML = "O won with first column";
   }else if(cellsPlayerO.includes("2") && cellsPlayerO.includes("5") && cellsPlayerO.includes("8")){
-    console.log("O won with second column")
+    gameInfo.innerHTML = "O won with second column";
   }else if(cellsPlayerO.includes("3") && cellsPlayerO.includes("6") && cellsPlayerO.includes("9")){
-    console.log("O won with third column")
+    gameInfo.innerHTML = "O won with third column"; 
   }else if(cellsPlayerO.includes("1") && cellsPlayerO.includes("5") && cellsPlayerO.includes("9")){
-    console.log("O won with first diagonal")
+    gameInfo.innerHTML = "O won with first diagonal";
   }else if(cellsPlayerO.includes("3") && cellsPlayerO.includes("5") && cellsPlayerO.includes("7")){
-    console.log("O won with second diagonal")
+    gameInfo.innerHTML = "O won with second diagonal";
   }
 }
 
 function xPlayerWon(){
   if(cellsPlayerX.includes("1") && cellsPlayerX.includes("2") && cellsPlayerX.includes("3")){
-    console.log("X won with first row")
+    gameInfo.innerHTML = "X won with first row";
   }else if(cellsPlayerX.includes("4") && cellsPlayerX.includes("5") && cellsPlayerX.includes("6")){
-    console.log("X won with second row")
+    gameInfo.innerHTML = "X won with second row";
   }else if(cellsPlayerX.includes("7") && cellsPlayerX.includes("8") && cellsPlayerX.includes("9")){
-    console.log("X won with third row")
+    gameInfo.innerHTML = "X won with third row";
   }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("4") && cellsPlayerX.includes("7")){
-    console.log("X won with first column")
+    gameInfo.innerHTML = "X won with first column";
   }else if(cellsPlayerX.includes("2") && cellsPlayerX.includes("5") && cellsPlayerX.includes("8")){
-    console.log("X won with second column")
+    gameInfo.innerHTML = "X won with second column";
   }else if(cellsPlayerX.includes("3") && cellsPlayerX.includes("6") && cellsPlayerX.includes("9")){
-    console.log("X won with third column")
+    gameInfo.innerHTML = "X won with third column";
   }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("5") && cellsPlayerX.includes("9")){
-    console.log("X won with first diagonal")
+    gameInfo.innerHTML = "X won with first diagonal";
   }else if(cellsPlayerX.includes("3") && cellsPlayerX.includes("5") && cellsPlayerX.includes("7")){
-    console.log("X won with second diagonal")
+    gameInfo.innerHTML = "X won with second diagonal";
   }
 }
 
-function isGameOver(){
-  console.log("Noone won this game!")
+function checkLoosers(clickedId){
+  countFilledCells.push(clickedId)
+  if(countFilledCells.includes("1") && countFilledCells.includes("2") && countFilledCells.includes("3") && countFilledCells.includes("4") && countFilledCells.includes("5") && countFilledCells.includes("6") && countFilledCells.includes("7") && countFilledCells.includes("8") && countFilledCells.includes("9")){
+    if(gameInfo.innerHTML.length === 0){
+      gameInfo.innerHTML = "You both are misserable loosers!";
+    }
+  }
 }
 
