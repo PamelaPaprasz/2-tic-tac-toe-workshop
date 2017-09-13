@@ -4,6 +4,8 @@ const board = document.querySelector(".board");
 
 let gameInfo = document.querySelector(".winner");
 
+let reloadButton = document.querySelector(".reload");
+
 let matrix = [
   ['', '', ''],
   ['', '', ''],
@@ -21,6 +23,10 @@ let countFilledCells = [];
 //Hint: https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
 //Hint: https://developer.mozilla.org/en-US/docs/Web/API/Element/className
 //Hint: https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
+
+reloadButton.addEventListener('click',function(event){
+  window.location.reload(true);
+})
 
 
 function addRowToBoard(board, rowClassName) {
