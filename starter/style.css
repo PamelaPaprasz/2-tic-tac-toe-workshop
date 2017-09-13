@@ -1,9 +1,13 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 table {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 td {
   padding: 0 0 0 45px;
@@ -12,5 +16,29 @@ td {
   max-height: 100px;
   width: 100px;
   max-width: 100px;
-  border: 1px solid black;
+  border: 1px solid #D11D05;
+  border-radius: 50px;
+}
+
+.title {
+  display: flex;
+  align-self: center;
+  color: #EB01A5;
+}
+
+.reload {
+  display: flex;
+  align-self: center;
+  width: 150px;
+  height: 150px;
+  /*border: none;*/
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: visible;
+  background: #F00;
+  padding:0 26px;
+  border-radius: 75px;
+  /*border-color: #F00;*/
+  border-width: 0;
 }
