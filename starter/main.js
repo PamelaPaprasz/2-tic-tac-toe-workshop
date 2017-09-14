@@ -6,11 +6,15 @@ let gameInfo = document.querySelector(".winner");
 
 let reloadButton = document.querySelector(".reload");
 
+let title = document.querySelector(".title");
+
 let matrix = [
   ['', '', ''],
   ['', '', ''],
   ['', '', '']
 ];
+
+let cell;
 
 let player = 'x'
 let id = 1
@@ -37,7 +41,7 @@ function addRowToBoard(board, rowClassName) {
 
 
 function addCellToRow(row, cellClassName, cellValue) {
-  const cell = document.createElement("td")
+  cell = document.createElement("td")
   row.appendChild(cell)
   cell.className = cellClassName
   cell.id = id++
@@ -111,55 +115,87 @@ function addEventListener(){
 
 function getOccupiedCells(clickedId){
   player === "x"? cellsPlayerO.push(clickedId) : cellsPlayerX.push(clickedId);
-  oPlayerWon()
-  xPlayerWon()
+  // oPlayerWon()
+  // xPlayerWon()
+  checkWinner()
 }
 
-function oPlayerWon(){
-  if(cellsPlayerO.includes("1") && cellsPlayerO.includes("2") && cellsPlayerO.includes("3")){
-    gameInfo.innerHTML = "O won with first row";
-  }else if(cellsPlayerO.includes("4") && cellsPlayerO.includes("5") && cellsPlayerO.includes("6")){
-    gameInfo.innerHTML = "O won with second row";
-  }else if(cellsPlayerO.includes("7") && cellsPlayerO.includes("8") && cellsPlayerO.includes("9")){
-    gameInfo.innerHTML = "O won with third row";
-  }else if(cellsPlayerO.includes("1") && cellsPlayerO.includes("4") && cellsPlayerO.includes("7")){
-    gameInfo.innerHTML = "O won with first column";
-  }else if(cellsPlayerO.includes("2") && cellsPlayerO.includes("5") && cellsPlayerO.includes("8")){
-    gameInfo.innerHTML = "O won with second column";
-  }else if(cellsPlayerO.includes("3") && cellsPlayerO.includes("6") && cellsPlayerO.includes("9")){
-    gameInfo.innerHTML = "O won with third column"; 
-  }else if(cellsPlayerO.includes("1") && cellsPlayerO.includes("5") && cellsPlayerO.includes("9")){
-    gameInfo.innerHTML = "O won with first diagonal";
-  }else if(cellsPlayerO.includes("3") && cellsPlayerO.includes("5") && cellsPlayerO.includes("7")){
-    gameInfo.innerHTML = "O won with second diagonal";
+function checkWinner(){
+  if(gameInfo.innerHTML.length === 0){
+    if(cellsPlayerO.includes("1") && cellsPlayerO.includes("2") && cellsPlayerO.includes("3")){
+      gameInfo.innerHTML = "O won with first row";
+      highlightWinner("1", "2", "3")
+    }else if(cellsPlayerO.includes("4") && cellsPlayerO.includes("5") && cellsPlayerO.includes("6")){
+      gameInfo.innerHTML = "O won with second row";
+      highlightWinner("4", "5", "6")
+    }else if(cellsPlayerO.includes("7") && cellsPlayerO.includes("8") && cellsPlayerO.includes("9")){
+      gameInfo.innerHTML = "O won with third row";
+      highlightWinner("7", "8", "9")
+    }else if(cellsPlayerO.includes("1") && cellsPlayerO.includes("4") && cellsPlayerO.includes("7")){
+      gameInfo.innerHTML = "O won with first column";
+      highlightWinner("1", "4", "7")
+    }else if(cellsPlayerO.includes("2") && cellsPlayerO.includes("5") && cellsPlayerO.includes("8")){
+      gameInfo.innerHTML = "O won with second column";
+      highlightWinner("2", "5", "8")
+    }else if(cellsPlayerO.includes("3") && cellsPlayerO.includes("6") && cellsPlayerO.includes("9")){
+      gameInfo.innerHTML = "O won with third column"; 
+      highlightWinner("3", "6", "9")
+    }else if(cellsPlayerO.includes("1") && cellsPlayerO.includes("5") && cellsPlayerO.includes("9")){
+      gameInfo.innerHTML = "O won with first diagonal";
+      highlightWinner("1", "5", "9")
+    }else if(cellsPlayerO.includes("3") && cellsPlayerO.includes("5") && cellsPlayerO.includes("7")){
+      gameInfo.innerHTML = "O won with second diagonal";
+      highlightWinner("3", "5", "7")
+    }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("2") && cellsPlayerX.includes("3")){
+      gameInfo.innerHTML = "X won with first row";
+      highlightWinner("1", "2", "3")
+    }else if(cellsPlayerX.includes("4") && cellsPlayerX.includes("5") && cellsPlayerX.includes("6")){
+      gameInfo.innerHTML = "X won with second row";
+      highlightWinner("4", "5", "6")
+    }else if(cellsPlayerX.includes("7") && cellsPlayerX.includes("8") && cellsPlayerX.includes("9")){
+      gameInfo.innerHTML = "X won with third row";
+      highlightWinner("7", "8", "9")
+    }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("4") && cellsPlayerX.includes("7")){
+      gameInfo.innerHTML = "X won with first column";
+      highlightWinner("1", "4", "7")
+    }else if(cellsPlayerX.includes("2") && cellsPlayerX.includes("5") && cellsPlayerX.includes("8")){
+      gameInfo.innerHTML = "X won with second column";
+      highlightWinner("2", "5", "8")
+    }else if(cellsPlayerX.includes("3") && cellsPlayerX.includes("6") && cellsPlayerX.includes("9")){
+      gameInfo.innerHTML = "X won with third column";
+      highlightWinner("3", "6", "9")
+    }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("5") && cellsPlayerX.includes("9")){
+      gameInfo.innerHTML = "X won with first diagonal";
+      highlightWinner("1", "5", "9")
+    }else if(cellsPlayerX.includes("3") && cellsPlayerX.includes("5") && cellsPlayerX.includes("7")){
+      gameInfo.innerHTML = "X won with second diagonal";
+      highlightWinner("3", "5", "7")
+    }
   }
 }
 
-function xPlayerWon(){
-  if(cellsPlayerX.includes("1") && cellsPlayerX.includes("2") && cellsPlayerX.includes("3")){
-    gameInfo.innerHTML = "X won with first row";
-  }else if(cellsPlayerX.includes("4") && cellsPlayerX.includes("5") && cellsPlayerX.includes("6")){
-    gameInfo.innerHTML = "X won with second row";
-  }else if(cellsPlayerX.includes("7") && cellsPlayerX.includes("8") && cellsPlayerX.includes("9")){
-    gameInfo.innerHTML = "X won with third row";
-  }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("4") && cellsPlayerX.includes("7")){
-    gameInfo.innerHTML = "X won with first column";
-  }else if(cellsPlayerX.includes("2") && cellsPlayerX.includes("5") && cellsPlayerX.includes("8")){
-    gameInfo.innerHTML = "X won with second column";
-  }else if(cellsPlayerX.includes("3") && cellsPlayerX.includes("6") && cellsPlayerX.includes("9")){
-    gameInfo.innerHTML = "X won with third column";
-  }else if(cellsPlayerX.includes("1") && cellsPlayerX.includes("5") && cellsPlayerX.includes("9")){
-    gameInfo.innerHTML = "X won with first diagonal";
-  }else if(cellsPlayerX.includes("3") && cellsPlayerX.includes("5") && cellsPlayerX.includes("7")){
-    gameInfo.innerHTML = "X won with second diagonal";
-  }
+
+function highlightWinner(idFirst, idSecond, idThird){
+  var firstCellToHighlight = document.getElementById(idFirst);
+  var secondCellToHighlight = document.getElementById(idSecond);
+  var thirdCellToHighlight = document.getElementById(idThird);
+  firstCellToHighlight.setAttribute('class', 'highlighted');
+  secondCellToHighlight.setAttribute('class', 'highlighted');
+  thirdCellToHighlight.setAttribute('class', 'highlighted');
 }
+
 
 function checkLoosers(clickedId){
   countFilledCells.push(clickedId)
   if(countFilledCells.includes("1") && countFilledCells.includes("2") && countFilledCells.includes("3") && countFilledCells.includes("4") && countFilledCells.includes("5") && countFilledCells.includes("6") && countFilledCells.includes("7") && countFilledCells.includes("8") && countFilledCells.includes("9")){
     if(gameInfo.innerHTML.length === 0){
-      gameInfo.innerHTML = "You both are misserable loosers!";
+      gameInfo.innerHTML = "You two both are misserable loosers!";
+      let allCells = document.querySelectorAll("td")
+      for(var i = 0; i < allCells.length; i++){
+        console.log(allCells[i]);
+        allCells[i].setAttribute('class', 'pitchBlack')
+      }
+      title.setAttribute('class', 'pitchBlack')
     }
   }
 }

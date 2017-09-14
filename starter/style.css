@@ -16,14 +16,20 @@ td {
   max-height: 100px;
   width: 100px;
   max-width: 100px;
-  border: 1px solid #D11D05;
+  border: 3px solid #A1C9B4;
   border-radius: 50px;
 }
 
 .title {
   display: flex;
   align-self: center;
-  color: #EB01A5;
+  color: #E25A5D;
+  padding: 30px;
+  background-color: #FAECE5;
+  border-top-left-radius:40px;
+  border-top-right-radius:300px;
+  border-bottom-left-radius:300px;
+  border-bottom-right-radius:40px;
 }
 
 .reload {
@@ -31,7 +37,6 @@ td {
   align-self: center;
   width: 150px;
   height: 150px;
-  /*border: none;*/
   outline: 0;
   cursor: pointer;
   text-decoration: none;
@@ -39,6 +44,22 @@ td {
   background: #F00;
   padding:0 26px;
   border-radius: 75px;
-  /*border-color: #F00;*/
   border-width: 0;
+}
+
+.winner {
+  display: flex;
+  align-self: center;
+  color: #EB01A5;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.highlighted {
+  background-color: #C0FFEE;
+}
+
+.pitchBlack {
+  background-color: black;
+  border-color: black;
 }
